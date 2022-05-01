@@ -13,7 +13,7 @@ PhotoStat is intended to be a web-based AI to solve introductory hypothesis test
 
 
 ## Tasks
-- [ V ] Add a way to process the image into text 
+- [x] Add a way to process the image into text 
 - [ ] Refine image to text processing accuracy 
 - [ ] Train a model to extract core data (e.g. mean, standard deviation, etc.) from the problem
 - [ ] Train a model to perform the hypothesis test
@@ -25,8 +25,10 @@ PhotoStat is intended to be a web-based AI to solve introductory hypothesis test
 - [ ] Connect the AI to the website 
 
 ## Built With 
-- Pytesseract 
+- [Pytesseract](https://pypi.org/project/pytesseract/)
+    - You will need to install: 
+        -  ```pip install pytesseract```
+        - [Download Tesseract at UB Mannheim](https://github.com/UB-Mannheim/tesseract/wiki)
 
 ## References 
 - [Image to Text](https://www.youtube.com/watch?v=4DrCIVS5U3Y)
-- 
