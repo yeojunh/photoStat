@@ -23,6 +23,8 @@ PhotoStat is intended to be a web-based AI to solve introductory hypothesis test
 - [ ] Allow users to share the solution with others
 - [ ] Create a website for the project
 - [ ] Connect the AI to the website 
+- [ ] Allow users to view more information about the AI regarding its reliability (%) and the project
+- [ ] Create a histogram of the website's daily/weekly/monthly usage and save it to a spreadsheet 
 
 ## Built With 
 - [Pytesseract](https://pypi.org/project/pytesseract/)
