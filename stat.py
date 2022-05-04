@@ -66,15 +66,13 @@ def find_test_val(problem):
     else: 
         word_num = w2n.word_to_num(problem)
         return str(word_num)
-            
-
 
 def find_test_type(problem): 
     # determine whether it's a z-test or t-test
     test_type = "unknown"
-    if "probability" in problem: 
+    if "probability" in problem or "percent" in problem or "chance" in problem or "likelyhood" in problem: 
         test_type = "p"
-    elif "mean" in problem: 
+    elif "mean" in problem or "average" in problem: 
         test_type = "mean"
     return test_type
 
@@ -96,6 +94,26 @@ def find_tailed(problem):
 #     find_hypothesis(phrase)
 
 
+def test_find_test_val(): 
+    result = find_test_val(phrase1)
+    assert result == "58,000"
+    
+    result = find_test_val(phrase2)
+    assert result == "3"
+
+    result = find_test_val(phrase3)
+    assert result == "0.83"
+
+def test_find_test_type(): 
+    result = find_test_type(phrase1)
+    assert result == "mean"
+
+    result = find_test_type(phrase2)
+    assert result == "mean"
+
+    result = find_test_type(phrase3)
+    assert result == "p"
+
 def test_find_hypothesis(): 
     result = find_hypothesis(phrase1)
     print(result)
@@ -111,14 +129,3 @@ def test_find_hypothesis():
 
 # test_find_hypothesis()
 
-def test_find_test_val(): 
-    result = find_test_val(phrase1)
-    assert result == "58,000"
-    
-    result = find_test_val(phrase2)
-    assert result == "3"
-
-    result = find_test_val(phrase3)
-    assert result == "0.83"
-
-test_find_test_val()
