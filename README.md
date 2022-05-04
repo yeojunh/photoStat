@@ -34,6 +34,8 @@ This project is a work in progress. I will first implement the project _without_
     - You will need to install: 
         -  ```pip install pytesseract```
         - [Download Tesseract at UB Mannheim](https://github.com/UB-Mannheim/tesseract/wiki)
+- [Word2Number](https://pypi.org/project/word2number/)
+    - ```pip install word2number```
 
 ## References 
 - [Image to Text](https://www.youtube.com/watch?v=4DrCIVS5U3Y)
