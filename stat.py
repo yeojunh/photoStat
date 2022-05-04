@@ -1,5 +1,6 @@
 import scipy.stats as ss
 import numpy as np
+import re
 
 #public variables 
 x = 0
@@ -8,6 +9,11 @@ sigma = 0
 n = 0
 alpha = 0 
 two_tailed = False
+
+# test values 
+phrase1 = "The mean entry level salary of an employee at a company is $58,000. You believe it is higher for IT professionals in the company. State the null and alternative hypotheses."
+phrase2 = "You are testing that the mean speed of your cable Internet connection is more than three Megabits per second. State the null and alternative hypotheses."
+phrase3 = "A sociologist claims the probability that a person picked at random in Times Square in New York City is visiting the area is 0.83. You want to test to see if the claim is correct. State the null and alternative hypotheses."
 
 
 def z_test(p, x, sigma, n, alpha, two_tailed): 
@@ -42,18 +48,24 @@ def find_test_val(problem):
     test_val = 0
     # val_equal = True
     extract_nums = [int(s) for s in problem.split() if s.isdigit()]
-    # if len(extract_nums) > 1: 
-    #     test_val = extract_nums[0]
-    #     for i in range(0, len(extract_nums)): 
-    #         if (test_val == extract_nums[i]):
-    #             val_equal = True
-    # if (val_equal): 
-    # todo: this is hard coded to return the first number in the list. if there are multiple numerical values in the phrase (e.g. year), this will return the first one.
-    if (len(extract_nums) > 0):
-        test_val = extract_nums[0]
-    else:
-        test_val = 0
-    return test_val
+
+    nums = re.findall('\d+[,\.]?\d*', problem)
+    # print(nums)
+    if len(nums) == 1: 
+        return nums[0]
+    else: 
+        nonYears = set()
+        for i in range(len(nums)):
+            if re.search('[12]\d\d\d', nums[i]) == None: 
+                nonYears.append(nums[i])
+        if (len(nonYears) == 0):
+            return nums[0] # multiple values that start with 1xxx or 2xxx (potentially years). just use the first value. TODO: handle this better
+        elif len(nonYears) == 1: 
+            return nonYears[0]
+        else: # more than 1 non years 
+            return nonYears[0] # multiple values that do not appear to be non-years. just use the first value. TODO: handle this better
+            
+
 
 def find_test_type(problem): 
     # determine whether it's a z-test or t-test
@@ -81,20 +93,24 @@ def find_tailed(problem):
 #     phrase = ""
 #     find_hypothesis(phrase)
 
+
 def test_find_hypothesis(): 
-    phrase = "The mean entry level salary of an employee at a company is $58,000. You believe it is higher for IT professionals in the company. State the null and alternative hypotheses."
-    result = find_hypothesis(phrase)
+    result = find_hypothesis(phrase1)
     print(result)
     assert result == "H0: mean = 58000\nH1: mean > 58000"
     
-    phrase = "You are testing that the mean speed of your cable Internet connection is more than three Megabits per second. State the null and alternative hypotheses."
-    result = find_hypothesis(phrase)
+    result = find_hypothesis(phrase2)
     print(result)
     assert result == "H0: mean = 3 Megabits per second\nH1: mean > 3 Megabits per second"
     
-    phrase = "A sociologist claims the probability that a person picked at random in Times Square in New York City is visiting the area is 0.83. You want to test to see if the claim is correct. State the null and alternative hypotheses."
-    result = find_hypothesis(phrase)
+    result = find_hypothesis(phrase3)
     print(result)
     assert result == "H0: mean == 0.83\nH1: mean != 0.83"
 
-test_find_hypothesis()
+# test_find_hypothesis()
+
+def test_find_test_val(): 
+    result = find_test_val(phrase1)
+    assert result == "58,000"
+
+test_find_test_val()
