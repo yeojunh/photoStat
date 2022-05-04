@@ -2,7 +2,7 @@
 ## About the Project
 PhotoStat is intended to be a web-based AI to solve introductory hypothesis tests (z-tests and t-tests of Normal distributions) by inserting an image of a word problem or typing out the question. 
 
-This project is a work in progress. I will first implement the project _without_ using AI. I will extract necessary data from the word problem using other methods for the initial implementation of the project. Then, I will re-implement the project using AI.
+This project is a work in progress. I will first implement the project _without_ using machine learning. I will extract necessary data from the word problem using other methods for the initial implementation of the project. Then, I will re-implement the project using machine learning.
 
 ## Functionalities:
 - Website with a simple interface to take/insert an image of a word problem or type out the question
@@ -37,3 +37,4 @@ This project is a work in progress. I will first implement the project _without_
 
 ## References 
 - [Image to Text](https://www.youtube.com/watch?v=4DrCIVS5U3Y)
+- [Monkey Learn Information on Text Analysis - resource for myself :)](https://monkeylearn.com/text-analysis/)
