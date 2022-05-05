@@ -11,10 +11,9 @@ n = 0
 alpha = 0 
 two_tailed = False
 
-# test values 
-phrase1 = "The mean entry level salary of an employee at a company is $58,000. You believe it is higher for IT professionals in the company. State the null and alternative hypotheses."
-phrase2 = "You are testing that the mean speed of your cable Internet connection is more than three Megabits per second. State the null and alternative hypotheses."
-phrase3 = "A sociologist claims the probability that a person picked at random in Times Square in New York City is visiting the area is 0.83. You want to test to see if the claim is correct. State the null and alternative hypotheses."
+
+def hello():
+    print("Hello")
 
 def z_test(p, x, sigma, n, alpha, two_tailed): 
     stdErr = sigma/np.sqrt(n)
@@ -43,11 +42,11 @@ def find_hypothesis(problem):
         return "Error: unknown test type or tailed"
 
     return "H0: " + test_type + " = " + str(test_val) + "\nH1: " + test_type + " " + tailed + " " + str(test_val)
-    
-def find_test_val(problem):
-    test_val = 0
-    # val_equal = True
 
+# REQUIRES: problem is a non-empty string
+# MODIFIES: none
+# EFFECTS: returns the test value of the hypothesis 
+def find_test_val(problem):
     nums = re.findall('\d+[,\.]?\d*', problem)
     # print(nums)
     if len(nums) == 1: 
@@ -67,6 +66,9 @@ def find_test_val(problem):
         word_num = w2n.word_to_num(problem)
         return str(word_num)
 
+# REQUIRES: problem is a non-empty string
+# MODIFIES: none
+# EFFECTS: returns the test type of the hypothesis (mean or p) 
 def find_test_type(problem): 
     # determine whether it's a z-test or t-test
     test_type = "unknown"
@@ -76,6 +78,9 @@ def find_test_type(problem):
         test_type = "mean"
     return test_type
 
+# REQUIRES: problem is a non-empty string
+# MODIFIES: none
+# EFFECTS: returns the tailedness of the hypothesis (one-tailed or two-tailed)
 def find_tailed(problem):
     tailed = "unknown"
     if "greater" in problem or "higher" in problem or "bigger" in problem or "more than" in problem: 
@@ -85,47 +90,4 @@ def find_tailed(problem):
     elif "not equal to" in problem or "correct" in problem: 
         tailed = "!="
     return tailed
-
-
-
-
-# def main():
-#     phrase = ""
-#     find_hypothesis(phrase)
-
-
-def test_find_test_val(): 
-    result = find_test_val(phrase1)
-    assert result == "58,000"
-    
-    result = find_test_val(phrase2)
-    assert result == "3"
-
-    result = find_test_val(phrase3)
-    assert result == "0.83"
-
-def test_find_test_type(): 
-    result = find_test_type(phrase1)
-    assert result == "mean"
-
-    result = find_test_type(phrase2)
-    assert result == "mean"
-
-    result = find_test_type(phrase3)
-    assert result == "p"
-
-def test_find_hypothesis(): 
-    result = find_hypothesis(phrase1)
-    print(result)
-    assert result == "H0: mean = 58000\nH1: mean > 58000"
-    
-    result = find_hypothesis(phrase2)
-    print(result)
-    assert result == "H0: mean = 3 Megabits per second\nH1: mean > 3 Megabits per second"
-    
-    result = find_hypothesis(phrase3)
-    print(result)
-    assert result == "H0: mean == 0.83\nH1: mean != 0.83"
-
-# test_find_hypothesis()
 
