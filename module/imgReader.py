@@ -7,6 +7,3 @@ def imgToText(imgPath):
     img = Image.open(imgPath)
     text = tess.image_to_string(img)
     return text
-
-print(imgToText('data/img/test.jpg'))
-print(imgToText('data/img/test2.jpg'))
