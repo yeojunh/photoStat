@@ -49,7 +49,23 @@ def test_find_hypothesis():
     # print(result)
     assert result == "H0: p = 0.83\nH1: p != 0.83"
 
+
+
+def test_find_z():
+    result = find_z(1, 1, 50, 1)
+    # print(result)
+    assert result == 0
+
+    result = find_z(0.83, 0.90, 35, 0.15)
+    # print(result)
+    assert round(result, 4) == 0.4667
+
+    result = find_z()
+
+
 # test_find_test_val()
 # test_find_test_type()
 # test_find_tailed()
 # test_find_hypothesis()
+
+test_find_z()
