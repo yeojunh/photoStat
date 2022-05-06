@@ -26,19 +26,30 @@ def test_find_test_type():
     result = find_test_type(phrase3)
     assert result == "p"
 
+def test_find_tailed():
+    result = find_tailed(phrase1)
+    assert result == ">"
+
+    result = find_tailed(phrase2)
+    assert result == ">"
+
+    result = find_tailed(phrase3)
+    assert result == "!="
+
 def test_find_hypothesis(): 
     result = find_hypothesis(phrase1)
-    print(result)
-    assert result == "H0: mean = 58000\nH1: mean > 58000"
+    # print(result)
+    assert result == "H0: mean = 58,000\nH1: mean > 58,000"
     
     result = find_hypothesis(phrase2)
-    print(result)
-    assert result == "H0: mean = 3 Megabits per second\nH1: mean > 3 Megabits per second"
+    # print(result)
+    assert result == "H0: mean = 3\nH1: mean > 3"
     
     result = find_hypothesis(phrase3)
-    print(result)
-    assert result == "H0: mean == 0.83\nH1: mean != 0.83"
+    # print(result)
+    assert result == "H0: p = 0.83\nH1: p != 0.83"
 
-test_find_test_val()
-test_find_test_type()
+# test_find_test_val()
+# test_find_test_type()
+# test_find_tailed()
 # test_find_hypothesis()
